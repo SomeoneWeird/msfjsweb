@@ -1,7 +1,7 @@
 msfjsweb
 ====
 
-Web interface for [MSFJS](htp://github.com/SomeoneWeird/msfjs)
+Web interface for [MSFJS](http://github.com/SomeoneWeird/msfjs)
 
 Installation
 ------------
