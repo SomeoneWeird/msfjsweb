@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>MSFJS Web Interface</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MSFJS Web Interface">
+    <meta name="author" content="Adam Brady">
+
+    <!-- Le styles -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-fixed">
+     <div class="navbar-inner">
+       <div class="container">
+         <a class="brand" href="../">MSFJS</a>
+         <div class="nav-collapse" id="main-menu">
+          <ul class="nav" id="main-menu-left">
+            <li class="active"><a id="swatch-link" href="/">Home</a></li>
+            <li><a id="swatch-link" href="/exploits">Exploits</a></li>
+            <li><a id="swatch-link" href="/payloads">Payloads</a></li>
+          </ul>
+         </div>
+       </div>
+     </div>
+   </div>
+
+   <div class="container">
+
+        <!-- Stats
+        ================================================== -->
+        <section id="statistics">
+          <div class="page-header">
+            <h1>Statistics</h1>
+          </div>
+
+          <!-- Headings & Paragraph Copy -->
+          <div class="row">
+
+            <div class="span12">
+              <div class="well">
+                Current MSF installation has <a href="/exploits"><%=exploits.length%></a> exploits and <a href="/payloads"><%=payloads.length%></a> payloads.
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+    </div>
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+
+      <center>
+        <a href="http://github.com/SomeoneWeird/msfjsweb/">MSFJS on GitHub</a>
+      </center>
+
+    </footer>
+  </body>
+</html>
