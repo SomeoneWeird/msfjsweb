@@ -1,0 +1,30 @@
+{
+  "name": "msfjsweb",
+  "version": "0.0.1",
+  "description": "Web interface for MSFJS",
+  "main": "server.js",
+  "dependencies": {
+    "async": "~0.1.22",
+    "ejs": "~0.8.3",
+    "express": "~3.0.6",
+    "msfjs": "~0.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SomeoneWeird/msfjsweb.git"
+  },
+  "keywords": [
+    "metasploit",
+    "msf",
+    "pentest",
+    "web",
+    "interface"
+  ],
+  "author": "SomeoneWeird",
+  "license": "MIT"
+}
