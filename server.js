@@ -1,9 +1,11 @@
-var express = require('express'),
+var config = require('./config.js'),
+
+		express = require('express'),
 		ejs 		= require('ejs'),
 		async 	= require('async'),
-		msfjs 	= require('msfjs')();
-
-var config = require('./config.js');
+		msfjs 	= require('msfjs')({
+			path: config.metasploitpath 
+		});
 
 var app = express();
 
