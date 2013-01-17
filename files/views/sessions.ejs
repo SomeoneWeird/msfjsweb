@@ -44,6 +44,7 @@
             <li><a id="swatch-link" href="/exploits">Exploits</a></li>
             <li class="active"><a id="swatch-link" href="/sessions">Sessions</a></li>
             <li><a id="swatch-link" href="/payloads">Payloads</a></li>
+            <li><a id="swatch-link" href="/launch">  New Exploit </a></li>
           </ul>
          </div>
        </div>
@@ -70,6 +71,7 @@
                         <th>#</th>
                         <th>From</th>
                         <th>To</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -80,6 +82,7 @@
                           <td> <%=i%> </td>
                           <td> <%=sessions[i].connection.from.host%> </td>
                           <td> <%=sessions[i].connection.to.host%> </td>
+                          <td> <a class="btn btn-success" href="/sessions/<%=i%>">Interact</a></td>
                         <tr>
 
                       <% } %>

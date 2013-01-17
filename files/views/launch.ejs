@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>MSFJS Web Interface</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MSFJS Web Interface">
+    <meta name="author" content="Adam Brady">
+
+    <!-- Le styles -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script>
+
+    <style>
+
+      #noactive {
+
+        color: white;
+        margin-bottom: 25px;
+        text-align: center;
+
+      }
+
+      .option {
+        margin-left: 10px;
+      }
+
+      .control-label {
+        padding-right: 10px;
+      }
+
+    </style>
+
+    <script>
+
+      var options = 0;
+
+      function remoption(id) {
+        $("#controlgroup-" + id).remove();
+      }
+
+      $(document).ready(function() {
+
+        $('#addoption').click(function(event) {
+
+          event.preventDefault();
+          
+          var html =  '<div class="control-group option" id="controlgroup-ID">' +
+                      ' <label class="control-label" for="options-ID">Option #ID</label>' +
+                      '  <input type="text" class="input" name="options[ID][key]" value="Key">' +
+                      '  <input type="text" class="input" name="options[ID][value]" value="Value">' +
+                      '  <button class="btn btn-danger" onclick="remoption(ID); return false;">Delete</button>'
+                      '</div>';
+
+          html = html.replace(/ID/g, options);
+
+          $('#options').append(html);
+
+          options++;
+
+        });
+
+        $('#launch-button').click(function(event) {
+
+          $('#launch-form').ajaxForm(function() {
+            $('#launch-form').prepend('<div class="alert alert-success">' +
+                                            '<a class="close">&times;</a>'+
+                                            '<strong>Launched!</strong>' +
+                                            '    Check your console (if possible) for status, if a session is opened it will show up <a href="/sessions">here.</a>' +
+                                          '</div>');
+          });
+
+        });
+
+      });
+
+    </script>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+  </head>
+
+  <body>
+
+    <!-- Navbar
+    ================================================== -->
+    <div class="navbar navbar-fixed">
+     <div class="navbar-inner">
+       <div class="container">
+         <a class="brand" href="../">MSFJS</a>
+         <div class="nav-collapse" id="main-menu">
+          <ul class="nav" id="main-menu-left">
+            <li><a id="swatch-link" href="/">Home</a></li>
+            <li><a id="swatch-link" href="/exploits">Exploits</a></li>
+            <li><a id="swatch-link" href="/sessions">Sessions</a></li>
+            <li><a id="swatch-link" href="/payloads">Payloads</a></li>
+            <li class="active"><a id="swatch-link" href="/launch">  New Exploit </a></li>
+          </ul>
+         </div>
+       </div>
+     </div>
+   </div>
+
+   <div class="container">
+
+        <!-- Launch
+        ================================================== -->
+        <section id="launch">
+
+          <div class="row">
+
+            <form class="form-horizontal well" method="POST" id="launch-form">
+              <fieldset>
+                <legend>Launch an exploit</legend>
+
+                <div class="control-group">
+                  <label class="control-label" for="exploit">Exploit</label>
+                  <div class="controls">
+                    <input type="text" class="input-xlarge" name="exploit"<% if(options.exploit) { %> value="<%=options.exploit%>" <% } %>>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <label class="control-label" for="payload">Payload</label>
+                  <div class="controls">
+                    <input type="text" class="input-xlarge" name="payload" value="windows/meterpreter/reverse_tcp" readonly="true">
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <label class="control-label" for="target">Target</label>
+                  <div class="controls">
+                    <input type="text" class="input-xlarge" name="target">
+                  </div>
+                </div>
+
+                <hr>
+
+                <legend>Options</legend>
+
+                <div class="control-group">
+                  <button class="btn btn-primary" id="addoption">Add Option</button>
+                </div>
+
+                <div id="options">
+
+                </div>
+
+                
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-success" id="launch-button">Launch</button>
+                  <button type="reset" class="btn">Reset</button>
+                </div>
+
+              </fieldset>
+            </form>
+
+          </div>
+
+        </section>
+
+    </div>
+
+    <!-- Footer
+    ================================================== -->
+    <footer class="footer">
+
+      <center>
+        <a href="http://github.com/SomeoneWeird/msfjsweb/">MSFJS on GitHub</a>
+      </center>
+
+    </footer>
+  </body>
+</html>
