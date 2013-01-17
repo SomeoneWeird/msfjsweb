@@ -20,30 +20,39 @@ app.use(app.router);
 
 app.get('/', function(request, response) {
 
-		response.render('index.ejs', {
-			layout: false,
-			exploits: msfjs.Exploits.exploits,
-			payloads: msfjs.Payloads.payloads
-		});
-	
+	response.render('index.ejs', {
+		layout: false,
+		exploits: msfjs.Exploits.exploits,
+		payloads: msfjs.Payloads.payloads
+	});
+
 });
 
 app.get('/exploits', function(request, response) {
 
-		response.render('exploits.ejs', {
-			layout: false,
-			exploits: msfjs.Exploits.exploits
-		});
+	response.render('exploits.ejs', {
+		layout: false,
+		exploits: msfjs.Exploits.exploits
+	});
 	
+});
+
+app.get('/sessions', function(request, response) {
+
+	response.render('sessions.ejs', {
+		layout: false,
+		sessions: msfjs.Metasploit.sessions
+	});
+
 });
 
 app.get('/payloads', function(request, response) {
 
-		response.render('payloads.ejs', {
-			layout: false,
-			payloads: msfjs.Payloads.payloads
-		});
-	
+	response.render('payloads.ejs', {
+		layout: false,
+		payloads: msfjs.Payloads.payloads
+	});
+
 });
 
 app.listen(config.server.port, config.server.host, function() {

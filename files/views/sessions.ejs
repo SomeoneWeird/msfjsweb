@@ -11,6 +11,18 @@
     <!-- Le styles -->
     <link href="/css/bootstrap.css" rel="stylesheet">
 
+    <style>
+
+      #noactive {
+
+        color: white;
+        margin-bottom: 25px;
+        text-align: center;
+
+      }
+
+    </style>
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -30,8 +42,8 @@
           <ul class="nav" id="main-menu-left">
             <li><a id="swatch-link" href="/">Home</a></li>
             <li><a id="swatch-link" href="/exploits">Exploits</a></li>
-            <li><a id="swatch-link" href="/sessions">Sessions</a></li>
-            <li class="active"><a id="swatch-link" href="/payloads">Payloads</a></li>
+            <li class="active"><a id="swatch-link" href="/sessions">Sessions</a></li>
+            <li><a id="swatch-link" href="/payloads">Payloads</a></li>
           </ul>
          </div>
        </div>
@@ -42,37 +54,47 @@
 
         <!-- Exploits
         ================================================== -->
-        <section id="payloads">
+        <section id="sessions">
           <div class="page-header">
-            <h1>Payloads</h1>
+            <h1>Sessions</h1>
           </div>
 
-          <!-- Headings & Paragraph Copy -->
-          <div class="row">
+          <% if(sessions.length>0) { %>
 
-                <table class="table table-bordered table-striped table-hover">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Payload Name</th>
-                      <th>Description</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+            <!-- Headings & Paragraph Copy -->
+            <div class="row">
 
-                    <% for(var i = 0; i < payloads.length; i++) { %>
-
+                  <table class="table table-bordered table-striped table-hover">
+                    <thead>
                       <tr>
-                        <td> <%=i%> </td>
-                        <td> <%=payloads[i].payload%> </td>
-                        <td> <%=payloads[i].description%> </td>
-                      <tr>
+                        <th>#</th>
+                        <th>From</th>
+                        <th>To</th>
+                      </tr>
+                    </thead>
+                    <tbody>
 
-                    <% } %>
+                      <% for(var i = 0; i < sessions.length; i++) { %>
 
-                  </tbody>
-                </table>
-          </div>
+                        <tr>
+                          <td> <%=i%> </td>
+                          <td> <%=sessions[i].connection.from.host%> </td>
+                          <td> <%=sessions[i].connection.to.host%> </td>
+                        <tr>
+
+                      <% } %>
+
+                    </tbody>
+                  </table>
+            </div>
+
+          <% } else { %>
+
+            <div id="noactive">
+              No active sessions.
+            </div>
+
+          <% } %>
 
         </section>
 
