@@ -13,10 +13,16 @@
 
     <style>
 
-      #noactive {
+      #noprocesses {
 
         color: white;
         margin-bottom: 25px;
+        text-align: center;
+
+      }
+
+      .breadcrumb {
+
         text-align: center;
 
       }
@@ -53,36 +59,61 @@
 
    <div class="container">
 
-        <!-- Exploits
+        <!-- Processes
         ================================================== -->
-        <section id="sessions">
+        <section id="processes">
           <div class="page-header">
-            <h1>Sessions</h1>
+            <h1>Session <%=session%> - Processes</h1>
           </div>
 
-          <% if(sessions.length>0) { %>
+          <% if(processes.length>0) { %>
 
             <!-- Headings & Paragraph Copy -->
             <div class="row">
+
+                <ul class="breadcrumb">
+                  <li><a href="/sessions/<%=session%>">Session</a> <span class="divider">/</span></li>
+                  <li class="active"><a href="/sessions/<%=session%>/processes">Processes</a> <span class="divider">/</span></li>
+                  <li><a href="/sessions/<%=session%>/networking">Networking</a></li>
+                </ul>
 
                   <table class="table table-bordered table-striped table-hover">
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>From</th>
-                        <th>To</th>
+                        <th>PID</th>
+                        <th>PPID</th>
+                        <th>File</th>
+                        <th>User</th>
+                        <th>Path</th>
+                        <th></th>
                         <th></th>
                       </tr>
                     </thead>
                     <tbody>
 
-                      <% for(var i = 0; i < sessions.length; i++) { %>
+                      <% for(var i = 0; i < processes.length; i++) { %>
 
                         <tr>
-                          <td> <%=i%> <% if(sessions[i].access.passthehash) { %> <span class="label label-info">Pass the Hash session</span> <% } %> </td>
-                          <td> <%=sessions[i].connection.from.host%> </td>
-                          <td> <%=sessions[i].connection.to.host%> </td>
-                          <td> <a class="btn btn-success" href="/sessions/<%=i%>">Interact</a></td>
+                          <td> <%=i%> </td>
+                          <td> <%=processes[i].pid%> <% if(pid == processes[i].pid) { %> <span class="label label-info">Current PID</span> <% } %> </td>
+                          <td> <%=processes[i].ppid%> </td>
+                          <td> <%=processes[i].file||""%> </td>
+                          <td> <%=processes[i].user||""%> </td>
+                          <td> <%=processes[i].path||""%> </td>
+
+                          <% if(pid != processes[i].pid) { %>
+
+                            <td> <a class="btn btn-primary" href="/sessions/<%=session%>/processes/ <%=processes[i].pid%>/migrate">Migrate</a> </td>
+
+                          <% } else { %>
+
+                            <td></td>
+
+                          <% } %>
+
+                            <td> <a class="btn btn-danger"  href="/sessions/<%=session%>/processes/<%=processes[i].pid%>/kill">Kill</a> </td>
+
                         <tr>
 
                       <% } %>
@@ -93,8 +124,8 @@
 
           <% } else { %>
 
-            <div id="noactive">
-              No active sessions.
+            <div id="noprocesses">
+              Something must have gone wrong... ps didn't return any processes.
             </div>
 
           <% } %>
